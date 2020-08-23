@@ -38,7 +38,7 @@ pub fn run(args: ArgMatches) -> Result<(), Box<dyn Error>>{
     Ok(())
 }
 
-fn caesar(text: &str, encrypt: bool) -> Result<String, FromUtf8Error> {
+pub fn caesar(text: &str, encrypt: bool) -> Result<String, FromUtf8Error> {
     if encrypt {
         shift(text, 3)
     }
@@ -47,7 +47,7 @@ fn caesar(text: &str, encrypt: bool) -> Result<String, FromUtf8Error> {
     }
 }
 
-fn shift(text: &str, by: i8) -> Result<String, FromUtf8Error> {
+pub fn shift(text: &str, by: i8) -> Result<String, FromUtf8Error> {
     translate_string(text.bytes(), make_shift(by))
 }
 
@@ -103,7 +103,7 @@ fn map_translate(
     )?)
 }
 
-fn atbash(text: &str) -> Result<String, FromUtf8Error> {
+pub fn atbash(text: &str) -> Result<String, FromUtf8Error> {
     let translation = |alphabet: &Vec<u8>| {
         let mut translate = HashMap::new();
 
@@ -142,7 +142,7 @@ fn numeric_decrypt(text: &str) -> Result<String, String> {
     }
 }
 
-fn vigenere(text: &str, key: &str, enc: bool) -> Result<String, FromUtf8Error> {
+pub fn vigenere(text: &str, key: &str, enc: bool) -> Result<String, FromUtf8Error> {
     let alphabet: Vec<_> = (b'a'..=b'z').collect();
 
     let mut reverse_alphabet = HashMap::new();
